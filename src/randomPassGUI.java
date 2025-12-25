@@ -26,7 +26,7 @@ import java.util.Random;
     JButton b5;
     JTextField tf2;
 
-    
+
 
     randomPassGUI(){
         jf = new JFrame();
@@ -61,7 +61,7 @@ import java.util.Random;
         tf1.setEditable(false);
         tf1.setBackground(Color.WHITE);
         tf1.setForeground(Color.BLACK);
-        tf2 = new JTextField(10);
+        tf2 = new JTextField("0",10);
 
 
         jp.setLayout(new GridLayout(2,2,10,10));
@@ -118,9 +118,70 @@ import java.util.Random;
     }
      @Override
      public void actionPerformed(ActionEvent e) {
+         Object see = e.getSource();
+
+         if(see == (b5)){
+             String length = tf2.getText();
+             int l = Integer.parseInt(length);
+
+             char[] arr = new char[l];
+
+             Random random = new Random();
+
+
+
+             if (b1.isSelected()){
+
+
+                for (int i = 0; i<l; i++){
+                    int randomOffset = random.nextInt(26);
+
+                    char randomChar = (char) ('A' + randomOffset);
+
+                    arr[i] = randomChar;
+
+                }
+
+                 String str = new String(arr);
+                tf1.setText(str);
+             }
+
+             if(b2.isSelected()){
+                 for (int i = 0; i<l; i++){
+                     int randomOffset = random.nextInt(26);
+
+                     char randomChar = (char) ('a' + randomOffset);
+
+                     arr[i] = randomChar;
+
+                 }
+
+                 String str = new String(arr);
+                 tf1.setText(str);
+             }
+
+             if (b1.isSelected() && b2.isSelected()){
+                 for (int i = 0; i<l; i++){
+                     int randomOffset = random.nextInt(26);
+
+                     char randomChar = (char) ('a' + randomOffset);
+
+                     arr[i] = randomChar;
+
+                 }
+
+                 String str = new String(arr);
+                 tf1.setText(str);
+             }
+         }
+
+
+
+
 
      }
     static void main(String[] args) {
+
         randomPassGUI r = new randomPassGUI();
     }
 
