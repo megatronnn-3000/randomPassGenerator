@@ -161,14 +161,27 @@ import java.util.Random;
              }
 
              if (b1.isSelected() && b2.isSelected()){
-                 for (int i = 0; i<l; i++){
+
                      int randomOffset = random.nextInt(26);
 
-                     char randomChar = (char) ('a' + randomOffset);
 
-                     arr[i] = randomChar;
+                    for(int i = 0; i<l;i++){
 
-                 }
+                     int ran = random.nextInt(2);
+
+                     if(ran == 0){
+                         char randomChar = (char) ('a' + randomOffset);
+
+                         arr[i] = randomChar;
+                     }
+
+                     if (ran == 1){
+                         char randomChar = (char) ('A' + randomOffset);
+
+                         arr[i] = randomChar;
+                     }
+
+                     }
 
                  String str = new String(arr);
                  tf1.setText(str);
@@ -183,6 +196,7 @@ import java.util.Random;
     static void main(String[] args) {
 
         randomPassGUI r = new randomPassGUI();
+
     }
 
 
