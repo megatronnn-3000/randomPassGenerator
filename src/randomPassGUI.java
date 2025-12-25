@@ -162,11 +162,8 @@ import java.util.Random;
 
              if (b1.isSelected() && b2.isSelected()){
 
-                     int randomOffset = random.nextInt(26);
-
-
                     for(int i = 0; i<l;i++){
-
+                        int randomOffset = random.nextInt(26);
                      int ran = random.nextInt(2);
 
                      if(ran == 0){
@@ -185,6 +182,22 @@ import java.util.Random;
 
                  String str = new String(arr);
                  tf1.setText(str);
+             }
+
+             if(b3.isSelected()){
+                 String[] arr1 = new String[l];
+
+                 for (int i = 0; i<l;i++){
+                     int val = random.nextInt(10);
+                     String x = String.valueOf(val);
+                     arr1[i] = x;
+
+                 }
+
+                 String result = String.join("",arr1);
+                 tf1.setText(result);
+
+
              }
          }
 
