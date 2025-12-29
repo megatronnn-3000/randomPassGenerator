@@ -1,216 +1,105 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import javax.swing.BoxLayout;
-import java.awt.Container;
-import java.net.URL;
-import java.awt.GridLayout;
 import java.util.Random;
 
-
-
- class randomPassGUI implements ActionListener {
+class randomPassGUI implements ActionListener {
 
     JFrame jf;
-    JPanel jp;
-    JPanel jp2;
-    JPanel jp3;
-    JPanel jp4;
-    JLabel l1;
-    JLabel l2;
-    JToggleButton b1;
-    JToggleButton b2;
-    JToggleButton b3;
-    JToggleButton b4;
-    JTextField tf1;
+    JPanel jp, jp2, jp3, jp4;
+    JLabel l1, l2;
+    JToggleButton b1, b2, b3, b4;
+    JTextField tf1, tf2;
     JButton b5;
-    JTextField tf2;
 
+    randomPassGUI() {
+        jf = new JFrame("Password Generator");
 
-
-    randomPassGUI(){
-        jf = new JFrame();
-
-
-
-
-        jp = new JPanel();
+        jp = new JPanel(new GridLayout(2, 2, 10, 10));
         jp2 = new JPanel();
         jp3 = new JPanel();
         jp4 = new JPanel();
 
-        l1 = new JLabel("Random password Generator");
-        l2 = new JLabel("password length");
+        l1 = new JLabel("Random Password Generator");
+        l1.setFont(new Font("Arial", Font.BOLD, 16));
 
-        b1 = new JToggleButton("UpperCase");
-        b1.addActionListener(this);
+        l2 = new JLabel("Password Length:");
 
-        b2 = new JToggleButton("LowerCase");
-        b2.addActionListener(this);
-
+        b1 = new JToggleButton("Uppercase");
+        b2 = new JToggleButton("Lowercase");
         b3 = new JToggleButton("Numbers");
-        b3.addActionListener(this);
+        b4 = new JToggleButton("Symbols");
 
-        b4 = new JToggleButton("symbols");
-        b4.addActionListener(this);
+        b5 = new JButton("Generate");
 
-        b5 = new JButton("generate");
-        b5.addActionListener(this);
-
-        tf1 = new JTextField(10);
+        tf1 = new JTextField(15);
         tf1.setEditable(false);
-        tf1.setBackground(Color.WHITE);
-        tf1.setForeground(Color.BLACK);
-        tf2 = new JTextField("0",10);
 
+        tf2 = new JTextField("8", 5);
 
-        jp.setLayout(new GridLayout(2,2,10,10));
-        JPanel gridWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        gridWrapper.add(jp);
-
-        jp2.setLayout(new BoxLayout(jp2,BoxLayout.PAGE_AXIS));
-        jp2.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        jp4.setLayout(new FlowLayout());
-        JPanel topContainer = new JPanel();
-        topContainer.setLayout(new BoxLayout(topContainer, BoxLayout.Y_AXIS));
-
-        topContainer.add(jp2);
-        topContainer.add(Box.createVerticalStrut(10));
-        topContainer.add(jp4);
-        topContainer.add(Box.createVerticalStrut(10));
-
-
-        jp4.setAlignmentX(Component.CENTER_ALIGNMENT);
-        gridWrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
-        jp3.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        jp4.add(l2);
-        jp4.add(tf2);
-        jp3.add(b5);
+        b5.addActionListener(this);
 
         jp.add(b1);
         jp.add(b2);
         jp.add(b3);
         jp.add(b4);
 
-
-
         jp2.add(l1);
-
         jp2.add(tf1);
 
+        jp4.add(l2);
+        jp4.add(tf2);
 
+        jf.setLayout(new BorderLayout(10, 10));
+        jf.add(jp2, BorderLayout.NORTH);
+        jf.add(jp, BorderLayout.CENTER);
+        jf.add(jp4, BorderLayout.WEST);
+        jf.add(b5, BorderLayout.SOUTH);
 
-        jf.add(topContainer, BorderLayout.NORTH);
-        jf.getContentPane().add(gridWrapper,BorderLayout.CENTER);
-        jf.getContentPane().add(jp3,BorderLayout.SOUTH);
-
-
-
-        jf.setSize(400,400);
-        jf.setVisible(true);
+        jf.setSize(420, 350);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-
-
-    }
-     @Override
-     public void actionPerformed(ActionEvent e) {
-         Object see = e.getSource();
-
-         if(see == (b5)){
-             String length = tf2.getText();
-             int l = Integer.parseInt(length);
-
-             char[] arr = new char[l];
-
-             Random random = new Random();
-
-
-
-             if (b1.isSelected()){
-
-
-                for (int i = 0; i<l; i++){
-                    int randomOffset = random.nextInt(26);
-
-                    char randomChar = (char) ('A' + randomOffset);
-
-                    arr[i] = randomChar;
-
-                }
-
-                 String str = new String(arr);
-                tf1.setText(str);
-             }
-
-             if(b2.isSelected()){
-                 for (int i = 0; i<l; i++){
-                     int randomOffset = random.nextInt(26);
-
-                     char randomChar = (char) ('a' + randomOffset);
-
-                     arr[i] = randomChar;
-
-                 }
-
-                 String str = new String(arr);
-                 tf1.setText(str);
-             }
-
-             if (b1.isSelected() && b2.isSelected()){
-
-                    for(int i = 0; i<l;i++){
-                        int randomOffset = random.nextInt(26);
-                     int ran = random.nextInt(2);
-
-                     if(ran == 0){
-                         char randomChar = (char) ('a' + randomOffset);
-
-                         arr[i] = randomChar;
-                     }
-
-                     if (ran == 1){
-                         char randomChar = (char) ('A' + randomOffset);
-
-                         arr[i] = randomChar;
-                     }
-
-                     }
-
-                 String str = new String(arr);
-                 tf1.setText(str);
-             }
-
-             if(b3.isSelected()){
-                 String[] arr1 = new String[l];
-
-                 for (int i = 0; i<l;i++){
-                     int val = random.nextInt(10);
-                     String x = String.valueOf(val);
-                     arr1[i] = x;
-
-                 }
-
-                 String result = String.join("",arr1);
-                 tf1.setText(result);
-
-
-             }
-         }
-
-
-
-
-
-     }
-    static void main(String[] args) {
-
-        randomPassGUI r = new randomPassGUI();
-
+        jf.setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
- }
+        if (e.getSource() == b5) {
+            int length;
+
+            try {
+                length = Integer.parseInt(tf2.getText());
+                if (length <= 0) throw new NumberFormatException();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(jf, "Enter a valid length!");
+                return;
+            }
+
+            StringBuilder pool = new StringBuilder();
+
+            if (b1.isSelected()) pool.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            if (b2.isSelected()) pool.append("abcdefghijklmnopqrstuvwxyz");
+            if (b3.isSelected()) pool.append("0123456789");
+            if (b4.isSelected()) pool.append("!@#$%^&*()-_=+[]{};:,.<>?/");
+
+            if (pool.length() == 0) {
+                JOptionPane.showMessageDialog(jf, "Select at least one option!");
+                return;
+            }
+
+            Random random = new Random();
+            StringBuilder password = new StringBuilder();
+
+            for (int i = 0; i < length; i++) {
+                int index = random.nextInt(pool.length());
+                password.append(pool.charAt(index));
+            }
+
+            tf1.setText(password.toString());
+        }
+    }
+
+    public static void main(String[] args) {
+        new randomPassGUI();
+    }
+}
