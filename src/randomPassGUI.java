@@ -56,7 +56,7 @@ class randomPassGUI implements ActionListener {
         jf.add(jp4, BorderLayout.WEST);
         jf.add(b5, BorderLayout.SOUTH);
 
-        jf.setSize(420, 350);
+        jf.setSize(800, 400);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
     }
